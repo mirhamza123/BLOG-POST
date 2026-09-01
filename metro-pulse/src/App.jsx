@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import News from "./pages/News";
 import Sports from "./pages/Sports";
 import Traval from "./pages/Traval";
-import CategoryPage from "./pages/CategoryPage";
 
 export default function App() {
   return (
@@ -13,7 +12,6 @@ export default function App() {
       <Route path="/news" element={<News />} />
       <Route path="/sports" element={<Sports />} />
       <Route path="/traval" element={<Traval />} />
-      <Route path="/category/:category" element={<CategoryPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
