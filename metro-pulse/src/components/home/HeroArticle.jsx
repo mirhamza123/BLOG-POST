@@ -3,7 +3,7 @@ import React from "react";
 function HeroArticle() {
   return (
     <div>
-      <main className="mx-auto max-w-7xl px-4 py-20">
+      <main className="mx-auto max-w-[88%] px-4 py-20">
         {/* hero section */}
         <section className="text-gray-600 body-font">
           <div className="container mx-auto flex   md:flex-row flex-col items-center">
@@ -37,6 +37,9 @@ function HeroArticle() {
         {/* latest articles */}
         <section className="text-gray-400  body-font">
           <div className="container py-24 mx-auto">
+            <div className="container px-5 py-10 mx-auto">
+              <h2 className="text-2xl font-bold text-black ">Latest Stores</h2>
+            </div>
             <div className="flex flex-wrap -m-4">
               <div className="p-4 md:w-1/3">
                 <div className="h-full border-2 border-gray-800 rounded-lg overflow-hidden">
