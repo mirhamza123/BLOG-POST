@@ -1,12 +1,12 @@
 import React from "react";
-import Sports from "../components/sport/Sports";
 import Navbar from "../components/Navbar";
+import SportsComponent from "../components/sport/Sports";
 
 function SportsPage() {
   return (
-    <div>
+    <div className="min-h-screen bg-slate-50">
       <Navbar />
-      <Sports />
+      <SportsComponent />
     </div>
   );
 }

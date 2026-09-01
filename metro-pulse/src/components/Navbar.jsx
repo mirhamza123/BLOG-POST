@@ -3,21 +3,17 @@ import logo from "../assets/logo.png";
 
 const navLinks = [
   { label: "All", to: "/" },
-  { label: "News", to: "/category/News" },
-  { label: "Sports", to: "/category/Sports" },
-  { label: "Travel", to: "/category/Travel" },
+  { label: "News", to: "/news" },
+  { label: "Sports", to: "/sports" },
+  { label: "Travel", to: "/travel" },
 ];
 
 function Navbar() {
   return (
     <header className="w-full border-b border-slate-300 bg-[#f3f3f1] px-4 py-3 shadow-sm">
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 rounded-full border border-slate-200 bg-white/90 px-5 py-2 shadow-[0_2px_12px_rgba(15,23,42,0.03)] backdrop-blur-sm">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between  rounded-[50px] border border-slate-500 bg-white/90 px-5 py-2  ">
         <NavLink to="/" className="flex min-w-[220px] items-center">
-          <img
-            src={logo}
-            alt="MetroPulse logo"
-            className="h-[72px] w-auto object-contain"
-          />
+          <img src={logo} alt="MetroPulse logo" className="h-[100px] w-auto " />
         </NavLink>
 
         <nav className="hidden items-center justify-center gap-8 md:flex">

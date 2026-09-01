@@ -11,6 +11,7 @@ export default function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/news" element={<News />} />
       <Route path="/sports" element={<Sports />} />
+      <Route path="/travel" element={<Traval />} />
       <Route path="/traval" element={<Traval />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
