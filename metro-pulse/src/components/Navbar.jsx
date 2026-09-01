@@ -1,32 +1,40 @@
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-const navLinks = ["All", "News", "Sports", "Travel"];
+const navLinks = [
+  { label: "All", to: "/" },
+  { label: "News", to: "/category/News" },
+  { label: "Sports", to: "/category/Sports" },
+  { label: "Travel", to: "/category/Travel" },
+];
 
 function Navbar() {
   return (
     <header className="w-full border-b border-slate-300 bg-[#f3f3f1] px-4 py-3 shadow-sm">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 rounded-full border border-slate-200 bg-white/90 px-5 py-2 shadow-[0_2px_12px_rgba(15,23,42,0.03)] backdrop-blur-sm">
-        <div className="flex min-w-[220px] items-center">
+        <NavLink to="/" className="flex min-w-[220px] items-center">
           <img
             src={logo}
             alt="MetroPulse logo"
             className="h-[72px] w-auto object-contain"
           />
-        </div>
+        </NavLink>
 
         <nav className="hidden items-center justify-center gap-8 md:flex">
-          {navLinks.map((item, index) => (
-            <a
-              key={item}
-              href="#"
-              className={`text-base font-medium transition ${
-                index === 0
-                  ? "text-slate-900"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
+          {navLinks.map(({ label, to }) => (
+            <NavLink
+              key={label}
+              to={to}
+              className={({ isActive }) =>
+                `text-base font-medium transition ${
+                  isActive
+                    ? "text-slate-900"
+                    : "text-slate-600 hover:text-slate-900"
+                }`
+              }
             >
-              {item}
-            </a>
+              {label}
+            </NavLink>
           ))}
         </nav>
 
