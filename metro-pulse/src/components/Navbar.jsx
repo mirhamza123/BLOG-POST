@@ -11,7 +11,7 @@ const navLinks = [
 function Navbar() {
   return (
     <header className="w-full border-b border-slate-300 bg-[#f3f3f1] px-4 py-3 shadow-sm">
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between  rounded-[50px] border border-slate-500 bg-white/90 px-5 py-2  ">
+      <div className="mx-auto flex max-w-[1500px] items-center justify-between  rounded-[50px] border border-slate-500 bg-white/90 px-5 py-2  ">
         <NavLink to="/" className="flex min-w-[220px] items-center">
           <img src={logo} alt="MetroPulse logo" className="h-[100px] w-auto " />
         </NavLink>
