@@ -7,7 +7,9 @@ function News() {
         <section className="text-gray-400  body-font">
           <div className="container py-10 mx-auto">
             <div className="container px-5 py-10 mx-auto">
-              <h2 className="text-2xl font-bold text-black ">Latest Stores</h2>
+              <h2 className="text-2xl font-bold text-black ">
+                News & Exploration
+              </h2>
             </div>
             <div className="flex flex-wrap -m-4">
               <div className="p-4 md:w-1/3">
