@@ -28,7 +28,7 @@ function Navbar() {
               className={({ isActive }) =>
                 `text-base font-medium  text-[23px] transition ${
                   isActive
-                    ? "text-slate-900"
+                    ? "text-blue-600 "
                     : "text-slate-600 hover:text-slate-900"
                 }`
               }
@@ -39,7 +39,7 @@ function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-slate-500 shadow-inner">
+          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-5 py-2 text-slate-500 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
