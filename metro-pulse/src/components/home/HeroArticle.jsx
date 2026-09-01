@@ -1,4 +1,5 @@
 import React from "react";
+import heroImage from "../../assets/hero.png";
 
 function HeroArticle() {
   return (
@@ -11,7 +12,7 @@ function HeroArticle() {
               <img
                 className="h-[320px] w-full rounded-2xl object-cover shadow-md sm:h-[420px] lg:h-[560px]"
                 alt="hero"
-                src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1200&q=80"
+                src={heroImage}
               />
             </div>
             <div className="lg:flex-grow md:w-1/2 lg:pl-15 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
