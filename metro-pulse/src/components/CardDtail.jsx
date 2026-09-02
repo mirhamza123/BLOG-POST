@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Link, useParams } from "react-router-dom";
 import { getArticleBySlug } from "../lib/contentful";
 
@@ -113,6 +114,8 @@ function CardDtail() {
   const imageUrl = fields.image?.fields?.file?.url;
   const title = fields.title || "Untitled Article";
   const category = fields.Category || fields.category || "General";
+  const body = fields.body;
+  const shortDescription = fields.ShortDescription || fields.shortDescription;
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-12 md:py-16">
@@ -148,7 +151,17 @@ function CardDtail() {
           )}
 
           <div className="prose prose-slate max-w-none">
-            {renderDescription(fields.description)}
+            {body ? (
+              documentToReactComponents(body)
+            ) : shortDescription ? (
+              <p className="text-lg leading-8 text-slate-700">
+                {shortDescription}
+              </p>
+            ) : (
+              <p className="text-lg leading-8 text-slate-600">
+                No description available.
+              </p>
+            )}
           </div>
         </div>
       </article>
