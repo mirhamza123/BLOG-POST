@@ -100,7 +100,7 @@ function HeroArticle() {
 
         <section className="text-gray-400 body-font">
           <div className="container py-24 mx-auto">
-            <div className="container px-5 py-8 mx-auto">
+            <div className="container px-5 py-10 mx-auto">
               <h2 className="text-2xl font-bold text-black">Latest Stores</h2>
             </div>
 
@@ -137,14 +137,14 @@ function HeroArticle() {
                     "Read the full story.";
 
                   return (
-                    <div key={slug || title} className="p-4 md:w-1/3">
+                    <div key={slug || title} className="p-2 md:w-1/3">
                       <Link
                         to={slug ? `/article/${slug}` : "/"}
                         className="block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
                       >
                         {imageUrl ? (
                           <img
-                            className="h-48 w-full object-cover object-center md:h-56"
+                            className="h-40 w-full object-cover object-center md:h-44"
                             src={
                               imageUrl.startsWith("//")
                                 ? `https:${imageUrl}`
@@ -153,28 +153,28 @@ function HeroArticle() {
                             alt={title}
                           />
                         ) : (
-                          <div className="h-48 w-full bg-slate-200 md:h-56" />
+                          <div className="h-40 w-full bg-slate-200 md:h-44" />
                         )}
 
-                        <div className="p-6">
-                          <span className="mb-2 inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">
+                        <div className="p-4">
+                          <span className="mb-2 inline-flex rounded-full bg-indigo-100 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-700">
                             {category}
                           </span>
-                          <h3 className="mb-3 text-xl font-semibold text-slate-900">
+                          <h3 className="mb-2 text-base font-semibold leading-tight text-slate-900">
                             {title}
                           </h3>
-                          <p className="mb-5 leading-relaxed text-slate-600">
+                          <p className="mb-2 text-xs leading-relaxed text-slate-600">
                             {shortDescription}
                           </p>
 
-                          <div className="mt-3 text-xs text-gray-500">
+                          <div className="mt-1 text-[10px] text-gray-500">
                             {formatTimeAgo(publishDate, now)} | {category}
                           </div>
 
-                          <span className="mt-4 inline-flex items-center text-base font-medium text-indigo-600 transition hover:text-indigo-800">
+                          <span className="mt-2 inline-flex items-center text-xs font-medium text-indigo-600 transition hover:text-indigo-800">
                             Learn More
                             <svg
-                              className="ml-2 h-4 w-4"
+                              className="ml-1.5 h-3.5 w-3.5"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
                               strokeWidth="2"
