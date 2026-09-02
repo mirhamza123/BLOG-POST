@@ -100,7 +100,7 @@ function HeroArticle() {
 
         <section className="text-gray-400 body-font">
           <div className="container py-24 mx-auto">
-            <div className="container px-5 py-10 mx-auto">
+            <div className="container px-5 py-8 mx-auto">
               <h2 className="text-2xl font-bold text-black">Latest Stores</h2>
             </div>
 
