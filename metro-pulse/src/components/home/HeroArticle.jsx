@@ -68,12 +68,12 @@ function HeroArticle() {
 
   return (
     <div>
-      <main className="mx-auto max-w-[88%] px-4 py-20">
+      <main className="mx-auto max-w-[88%] px-4 py-14">
         <section className="text-gray-600 body-font">
           <div className="container mx-auto flex md:flex-row flex-col items-center">
             <div className="mb-10 w-full md:mb-0 md:w-[55%] lg:w-[95%] lg:max-w-[700px]">
               <img
-                className="h-[320px] w-full rounded-2xl object-cover shadow-md sm:h-[420px] lg:h-[560px]"
+                className="h-[320px] w-full rounded-2xl object-cover shadow-md sm:h-[420px] lg:h-[420px]"
                 alt="hero"
                 src={heroImage}
               />
