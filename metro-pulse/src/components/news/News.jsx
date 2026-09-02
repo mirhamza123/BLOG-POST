@@ -41,7 +41,9 @@ function News() {
       <section className="body-font text-gray-400">
         <div className="container mx-auto py-6">
           <div className="container mx-auto px-5 py-10">
-            <h2 className="text-2xl font-bold text-black">News & Exploration</h2>
+            <h2 className="text-2xl font-bold text-black">
+              News & Exploration
+            </h2>
           </div>
 
           {loading ? (

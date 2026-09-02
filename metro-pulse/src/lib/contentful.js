@@ -35,7 +35,7 @@ export const getArticles = async (categoryName) => {
       ];
 
       return categoryValues.some(
-        (value) => normalizeCategoryValue(value) === targetCategory
+        (value) => normalizeCategoryValue(value) === targetCategory,
       );
     });
   } catch (error) {
