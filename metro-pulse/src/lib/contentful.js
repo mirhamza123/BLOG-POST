@@ -5,21 +5,39 @@ export const client = createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
 });
 
+const normalizeCategoryValue = (value) => {
+  if (value === undefined || value === null) return "";
+  return String(value).trim().toLowerCase();
+};
+
 export const getArticles = async (categoryName) => {
   try {
-    const query = {
+    const response = await client.getEntries({
       content_type: "blogPost",
-    };
+      limit: 1000,
+    });
 
-    if (categoryName && categoryName.toLowerCase() !== "all") {
-      const formattedCategory =
-        categoryName.trim().charAt(0).toUpperCase() +
-        categoryName.trim().slice(1).toLowerCase();
-      query["fields.Category"] = formattedCategory;
+    const items = response.items || [];
+
+    if (!categoryName || categoryName.toLowerCase() === "all") {
+      return items;
     }
 
-    const response = await client.getEntries(query);
-    return response.items || [];
+    const targetCategory = normalizeCategoryValue(categoryName);
+
+    return items.filter((item) => {
+      const fields = item?.fields || {};
+      const categoryValues = [
+        fields.Category,
+        fields.category,
+        fields.categoryName,
+        fields.type,
+      ];
+
+      return categoryValues.some(
+        (value) => normalizeCategoryValue(value) === targetCategory
+      );
+    });
   } catch (error) {
     console.error("Contentful fetch error:", error);
     return [];
