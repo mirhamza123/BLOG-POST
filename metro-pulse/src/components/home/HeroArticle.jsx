@@ -3,9 +3,40 @@ import { Link } from "react-router-dom";
 import heroImage from "../../assets/hero.png";
 import { getArticles } from "../../lib/contentful";
 
+const formatTimeAgo = (dateString, now = Date.now()) => {
+  if (!dateString) return "Just now";
+
+  const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return "Just now";
+
+  const seconds = Math.max(0, Math.floor((now - date.getTime()) / 1000));
+
+  if (seconds < 60) return "Just now";
+  if (seconds < 3600) {
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes} min ago`;
+  }
+  if (seconds < 86400) {
+    const hours = Math.floor(seconds / 3600);
+    return `${hours} hr ago`;
+  }
+
+  const days = Math.floor(seconds / 86400);
+  return `${days} d ago`;
+};
+
 function HeroArticle() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [now, setNow] = useState(Date.now());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(Date.now());
+    }, 60000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -95,6 +126,10 @@ function HeroArticle() {
                   const imageUrl = fields.image?.fields?.file?.url;
                   const category =
                     fields.Category || fields.category || "General";
+                  const publishDate =
+                    fields.publishDate ||
+                    fields.PublishDate ||
+                    article.sys?.createdAt;
                   const title = fields.title || "Untitled article";
                   const shortDescription =
                     fields.shortDescription ||
@@ -132,7 +167,11 @@ function HeroArticle() {
                             {shortDescription}
                           </p>
 
-                          <span className="inline-flex items-center text-base font-medium text-indigo-600 transition hover:text-indigo-800">
+                          <div className="mt-3 text-xs text-gray-500">
+                            {formatTimeAgo(publishDate, now)} | {category}
+                          </div>
+
+                          <span className="mt-4 inline-flex items-center text-base font-medium text-indigo-600 transition hover:text-indigo-800">
                             Learn More
                             <svg
                               className="ml-2 h-4 w-4"
