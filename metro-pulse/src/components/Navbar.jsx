@@ -16,7 +16,7 @@ function Navbar() {
           <img
             src={logo}
             alt="MetroPulse logo"
-            className="h-[100px] w-auto rounded "
+            className="h-[60px] w-auto rounded "
           />
         </NavLink>
 
