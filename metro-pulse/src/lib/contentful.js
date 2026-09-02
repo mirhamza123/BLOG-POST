@@ -5,7 +5,6 @@ export const client = createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
 });
 
-// Category ke mutabiq articles fetch karne ka function
 export const getArticles = async (categoryName) => {
   try {
     const query = {
@@ -14,14 +13,30 @@ export const getArticles = async (categoryName) => {
 
     if (categoryName && categoryName.toLowerCase() !== "all") {
       const formattedCategory =
-        categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+        categoryName.trim().charAt(0).toUpperCase() +
+        categoryName.trim().slice(1).toLowerCase();
       query["fields.Category"] = formattedCategory;
     }
 
     const response = await client.getEntries(query);
-    return response.items;
+    return response.items || [];
   } catch (error) {
     console.error("Contentful fetch error:", error);
     return [];
+  }
+};
+
+export const getArticleBySlug = async (slug) => {
+  try {
+    const response = await client.getEntries({
+      content_type: "blogPost",
+      "fields.slug": slug,
+      limit: 1,
+    });
+
+    return response.items?.[0] || null;
+  } catch (error) {
+    console.error("Contentful single article fetch error:", error);
+    return null;
   }
 };
