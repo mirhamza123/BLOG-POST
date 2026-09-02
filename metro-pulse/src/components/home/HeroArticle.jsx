@@ -85,7 +85,13 @@ function HeroArticle() {
               <div className="flex flex-wrap -m-4">
                 {articles.map((article) => {
                   const { fields = {} } = article;
-                  const slug = fields.slug;
+                  const slug =
+                    fields.slug ||
+                    (fields.title || "")
+                      .toLowerCase()
+                      .trim()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/^-+|-+$/g, "");
                   const imageUrl = fields.image?.fields?.file?.url;
                   const category =
                     fields.Category || fields.category || "General";
@@ -97,7 +103,10 @@ function HeroArticle() {
 
                   return (
                     <div key={slug || title} className="p-4 md:w-1/3">
-                      <div className="h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+                      <Link
+                        to={slug ? `/article/${slug}` : "/"}
+                        className="block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+                      >
                         {imageUrl ? (
                           <img
                             className="h-48 w-full object-cover object-center md:h-56"
@@ -123,10 +132,7 @@ function HeroArticle() {
                             {shortDescription}
                           </p>
 
-                          <Link
-                            to={`/article/${slug}`}
-                            className="inline-flex items-center text-base font-medium text-indigo-600 transition hover:text-indigo-800"
-                          >
+                          <span className="inline-flex items-center text-base font-medium text-indigo-600 transition hover:text-indigo-800">
                             Learn More
                             <svg
                               className="ml-2 h-4 w-4"
@@ -140,9 +146,9 @@ function HeroArticle() {
                               <path d="M5 12h14" />
                               <path d="M12 5l7 7-7 7" />
                             </svg>
-                          </Link>
+                          </span>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                   );
                 })}
