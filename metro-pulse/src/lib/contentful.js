@@ -50,6 +50,7 @@ export const getArticleBySlug = async (slug) => {
       content_type: "blogPost",
       "fields.slug": slug,
       limit: 1,
+      include: 10,
     });
 
     return response.items?.[0] || null;

@@ -1,7 +1,26 @@
 import { useEffect, useState } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 import { Link, useParams } from "react-router-dom";
 import { getArticleBySlug } from "../lib/contentful";
+
+const renderOptions = {
+  renderNode: {
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      const imageUrl = node?.data?.target?.fields?.file?.url;
+
+      if (!imageUrl) return null;
+
+      const src = imageUrl.startsWith("//") ? `https:${imageUrl}` : imageUrl;
+
+      return (
+        <div className="my-8 overflow-hidden rounded-2xl">
+          <img src={src} alt="" className="h-auto w-full object-cover" />
+        </div>
+      );
+    },
+  },
+};
 
 function CardDtail() {
   const { slug } = useParams();
@@ -152,7 +171,7 @@ function CardDtail() {
 
           <div className="prose prose-slate max-w-none">
             {body ? (
-              documentToReactComponents(body)
+              documentToReactComponents(body, renderOptions)
             ) : shortDescription ? (
               <p className="text-lg leading-8 text-slate-700">
                 {shortDescription}
