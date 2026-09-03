@@ -57,14 +57,14 @@ const socialLinks = [
 function Footer() {
   return (
     <footer className="border-t border-slate-300 bg-[#f3f3f1]">
-      <div className="mx-auto flex max-w-[1600px] flex-col gap-8 px-4 py-8 sm:px-6 md:flex-row md:items-end md:justify-between lg:px-8 xl:px-10">
-        <div className="flex flex-col gap-5">
-          <div className="flex items-center gap-3 sm:gap-4">
+      <div className="mx-auto flex max-w-[1600px] flex-col gap-8 px-4 py-10 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 xl:px-10">
+        <div className="flex min-w-0 flex-col gap-5">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <span
               className="inline-block h-px w-8 bg-slate-500 sm:w-9"
               aria-hidden="true"
             />
-            <h3 className="text-[2.5rem] font-semibold leading-none tracking-[-0.06em] text-slate-900 sm:text-[3.2rem]">
+            <h3 className="text-[36px] font-semibold l  text-blue-700 sm:text-[3.2rem]">
               MetroPulse
             </h3>
           </div>
@@ -88,10 +88,10 @@ function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-start gap-4 md:items-end">
+        <div className="flex min-w-0 flex-col items-start gap-4 lg:items-end">
           <nav
             aria-label="Footer navigation"
-            className="flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8"
+            className="flex max-w-full flex-wrap items-center gap-x-5 gap-y-2 sm:gap-x-6 lg:flex-nowrap lg:gap-x-8"
           >
             {footerLinks.map((label) => (
               <a
@@ -104,8 +104,8 @@ function Footer() {
             ))}
           </nav>
 
-          <p className="text-base text-slate-600 sm:text-lg md:text-xl ml-12">
-            © 2024 MetroPulse Editorial Group. All rights reserved.
+          <p className="max-w-full text-left text-sm text-slate-600 sm:text-lg lg:text-right lg:text-xl">
+            ©2024 MetroPulse Editorial Group. All rights .
           </p>
         </div>
       </div>
