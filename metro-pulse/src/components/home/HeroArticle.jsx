@@ -78,18 +78,19 @@ function HeroArticle() {
                 src={heroImage}
               />
             </div>
-            <div className="lg:flex-grow md:w-1/2 lg:pl-15 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+            <div className="lg:flex-grow md:w-[50%] lg:pl-15 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
               <h1 className=" title-font sm:text-4xl text-3xl mb-4 font-semibold text-gray-900">
                 <span className="block text-blue-600">
                   Pulse of the World: Breaking News, Live Sports &
                 </span>
                 <span className="block">Unforgettable Journeys</span>
               </h1>
-              <p className="mb-8 leading-relaxed">
-                As major cities adapt to post-pandemic realities, a new wave of
-                urban planning is transforming how we live, work, and commute.
+              <p className="mb-8 ">
+                Stay informed with real-time news, feel the energy of live
+                sports, and discover world-class travel escapes tailored for
+                your daily pulse.
               </p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start ">
+              <div className="flex flex-col gap-2 sm:flex-row sm:justify-center md:justify-start ">
                 <button className="inline-flex text-white bg-blue-700 border-0 py-2 px-6 hover:bg-indigo-600 rounded-2xl text-lg">
                   Read more
                 </button>
