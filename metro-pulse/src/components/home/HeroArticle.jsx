@@ -80,7 +80,9 @@ function HeroArticle() {
             </div>
             <div className="lg:flex-grow md:w-1/2 lg:pl-15 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
               <h1 className="title-font sm:text-4xl text-3xl mb-4 font-bold text-gray-900">
-                <span className="block">The Future of Urban Living: </span>
+                <span className="block text-blue-600">
+                  The Future of Urban Living:{" "}
+                </span>
                 <span className="block">Navigating the 2024 Metropolis</span>
               </h1>
               <p className="mb-8 leading-relaxed">
@@ -90,7 +92,7 @@ function HeroArticle() {
                 innovations reshaping our skylines.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start ">
-                <button className="inline-flex text-white bg-indigo-700 border-0 py-2 px-6 hover:bg-indigo-600 rounded-2xl text-lg">
+                <button className="inline-flex text-white bg-blue-700 border-0 py-2 px-6 hover:bg-indigo-600 rounded-2xl text-lg">
                   Read more
                 </button>
               </div>
