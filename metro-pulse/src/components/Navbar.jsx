@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
@@ -9,14 +10,16 @@ const navLinks = [
 ];
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="w-full border-b border-slate-300 bg-[#ececec] px-4 py-3 shadow-sm">
-      <div className="mx-auto flex max-w-[1500px] items-center justify-between  rounded-[20px] border border-slate-500 bg-white/90 px-5 py-2  ">
-        <NavLink to="/" className="flex min-w-[20px] items-center">
+    <header className="w-full border-b border-slate-300 bg-[#ececec] px-2 py-2 shadow-sm sm:px-4 sm:py-3">
+      <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-2 rounded-[20px] border border-slate-500 bg-white/90 px-3 py-2 sm:px-5">
+        <NavLink to="/" className="flex min-w-0 items-center">
           <img
             src={logo}
             alt="MetroPulse logo"
-            className="h-[60px] w-auto rounded "
+            className="h-10 w-auto rounded sm:h-[60px]"
           />
         </NavLink>
 
@@ -38,8 +41,8 @@ function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-5  text-slate-500 ">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+          <div className="flex min-w-0 items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-500 sm:px-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -62,10 +65,9 @@ function Navbar() {
           <button
             type="button"
             aria-label="Toggle theme"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 sm:h-10 sm:w-10"
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
@@ -79,7 +81,51 @@ function Navbar() {
               />
             </svg>
           </button>
+
+          <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((isOpen) => !isOpen)}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 md:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              {menuOpen ? (
+                <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <path strokeLinecap="round" d="M4 7h16M4 12h16M4 17h16" />
+              )}
+            </svg>
+          </button>
         </div>
+
+        {menuOpen && (
+          <nav className="flex basis-full flex-col gap-2 border-t border-slate-200 pt-3 md:hidden">
+            {navLinks.map(({ label, to }) => (
+              <NavLink
+                key={label}
+                to={to}
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `rounded-lg px-3 py-2 text-base font-medium transition ${
+                    isActive
+                      ? "bg-blue-50 text-blue-600"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
+          </nav>
+        )}
       </div>
     </header>
   );
