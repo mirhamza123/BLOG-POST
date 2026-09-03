@@ -78,7 +78,7 @@ function Traval() {
                   <div key={slug || title} className="p-2 md:w-1/3">
                     <Link
                       to={slug ? `/article/${slug}` : "/"}
-                      className="block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+                      className="group block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
                     >
                       {imageUrl ? (
                         <img
@@ -98,7 +98,7 @@ function Traval() {
                         <span className="mb-2 inline-flex rounded-full bg-indigo-100 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-700">
                           {category}
                         </span>
-                        <h3 className="mb-2 text-base font-semibold leading-tight text-slate-900">
+                        <h3 className="mb-2 text-base font-semibold leading-tight text-slate-900 group-hover:underline">
                           {title}
                         </h3>
                         <p className="mb-2 text-xs leading-relaxed text-slate-600">
