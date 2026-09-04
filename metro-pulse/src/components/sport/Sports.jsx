@@ -66,6 +66,9 @@ function Sports() {
                     .replace(/[^a-z0-9]+/g, "-")
                     .replace(/^-+|-+$/g, "");
                 const imageUrl = fields.image?.fields?.file?.url;
+                const authorName =
+                  fields.authorName || fields["author name"] || "Anonymous";
+                const authorImageUrl = fields.authorimg?.fields?.file?.url;
                 const category = fields.Category || "Sports";
                 const title = fields.title || "Untitled article";
                 const shortDescription =
@@ -104,6 +107,29 @@ function Sports() {
                         <p className="mb-2 text-xs leading-relaxed text-slate-600">
                           {shortDescription}
                         </p>
+
+                        <div className="mb-3 flex items-center justify-between gap-3">
+                          <div className="flex min-w-0 items-center gap-2">
+                            {authorImageUrl ? (
+                              <img
+                                className="h-7 w-7 shrink-0 rounded-full object-cover"
+                                src={
+                                  authorImageUrl.startsWith("//")
+                                    ? `https:${authorImageUrl}`
+                                    : authorImageUrl
+                                }
+                                alt={authorName}
+                              />
+                            ) : (
+                              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-700 text-xs font-semibold text-white">
+                                {authorName.charAt(0).toUpperCase()}
+                              </span>
+                            )}
+                            <span className="truncate text-xs font-medium text-slate-700">
+                              {authorName}
+                            </span>
+                          </div>
+                        </div>
 
                         <span className="inline-flex items-center text-xs font-medium text-indigo-600 transition hover:text-indigo-800">
                           Learn More
