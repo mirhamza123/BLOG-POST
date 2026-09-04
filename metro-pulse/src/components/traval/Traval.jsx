@@ -69,6 +69,10 @@ function Traval() {
                 const authorName =
                   fields.authorName || fields["author name"] || "Anonymous";
                 const authorImageUrl = fields.authorimg?.fields?.file?.url;
+                const readTime =
+                  fields["Reading Time"] ||
+                  fields.readingTime ||
+                  fields.readTime;
                 const category = fields.Category || "Travel";
                 const title = fields.title || "Untitled article";
                 const shortDescription =
@@ -107,6 +111,12 @@ function Traval() {
                         <p className="mb-2 text-xs leading-relaxed text-slate-600">
                           {shortDescription}
                         </p>
+
+                        {readTime && (
+                          <div className="mb-3 text-[10px] text-gray-500">
+                            Reading time: {readTime}
+                          </div>
+                        )}
 
                         <div className="mb-3 flex items-center justify-between gap-3">
                           <div className="flex min-w-0 items-center gap-2">
