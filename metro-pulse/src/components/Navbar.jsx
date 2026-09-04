@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Travel", to: "/travel" },
 ];
 
-function Navbar() {
+function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -28,6 +28,7 @@ function Navbar() {
             <NavLink
               key={label}
               to={to}
+              onClick={() => setSelectedCategory(label)}
               className={({ isActive }) =>
                 `text-base font-medium  text-[23px] transition ${
                   isActive
@@ -57,9 +58,14 @@ function Navbar() {
                 d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-            <span className="hidden text-sm text-slate-500 sm:inline">
-              Search articles...
-            </span>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Search articles..."
+              aria-label="Search articles"
+              className="w-32 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-500 sm:w-44"
+            />
           </div>
 
           <button
@@ -112,7 +118,10 @@ function Navbar() {
               <NavLink
                 key={label}
                 to={to}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setSelectedCategory(label);
+                  setMenuOpen(false);
+                }}
                 className={({ isActive }) =>
                   `rounded-lg px-3 py-2 text-base font-medium transition ${
                     isActive

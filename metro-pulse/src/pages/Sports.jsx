@@ -1,8 +1,8 @@
 import React from "react";
 import SportsComponent from "../components/sport/Sports";
 
-function SportsPage() {
-  return <SportsComponent />;
+function SportsPage({ searchQuery }) {
+  return <SportsComponent searchQuery={searchQuery} />;
 }
 
 export default SportsPage;

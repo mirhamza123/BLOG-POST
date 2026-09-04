@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getArticles } from "../../lib/contentful";
+import { filterArticles, getArticles } from "../../lib/contentful";
 
-function News() {
+function News({ searchQuery = "" }) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -36,6 +36,8 @@ function News() {
     };
   }, []);
 
+  const filteredArticles = filterArticles(articles, searchQuery, "News");
+
   return (
     <main className="mx-auto max-w-[88%] px-4 py-10">
       <section className="body-font text-gray-400">
@@ -50,13 +52,13 @@ function News() {
             <div className="px-5 py-10 text-center text-lg text-slate-600">
               Loading News articles...
             </div>
-          ) : articles.length === 0 ? (
+          ) : filteredArticles.length === 0 ? (
             <div className="px-5 py-10 text-center text-lg text-slate-600">
-              No News articles available.
+              No articles found.
             </div>
           ) : (
             <div className="flex flex-wrap -m-4">
-              {articles.map((article) => {
+              {filteredArticles.map((article) => {
                 const { fields = {} } = article;
                 const slug =
                   fields.slug ||

@@ -7,7 +7,37 @@ export const client = createClient({
 
 const normalizeCategoryValue = (value) => {
   if (value === undefined || value === null) return "";
+  if (typeof value === "object") {
+    return normalizeCategoryValue(
+      value.fields?.name || value.fields?.title || value.name || value.title,
+    );
+  }
   return String(value).trim().toLowerCase();
+};
+
+export const filterArticles = (
+  articles,
+  searchQuery = "",
+  selectedCategory = "All",
+) => {
+  const query = searchQuery.trim().toLowerCase();
+  const category = normalizeCategoryValue(selectedCategory);
+
+  return articles.filter((article) => {
+    const fields = article?.fields || {};
+    const title = String(fields.title || "").toLowerCase();
+    const articleCategory = [
+      fields.Category,
+      fields.category,
+      fields.categoryName,
+      fields.type,
+    ].map(normalizeCategoryValue);
+
+    return (
+      title.includes(query) &&
+      (category === "all" || articleCategory.includes(category))
+    );
+  });
 };
 
 export const getArticles = async (categoryName) => {

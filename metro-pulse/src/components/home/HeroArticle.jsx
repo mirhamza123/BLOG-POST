@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import heroImage from "../../assets/hero.png";
-import { getArticles } from "../../lib/contentful";
+import { filterArticles, getArticles } from "../../lib/contentful";
 
 const formatTimeAgo = (dateString, now = Date.now()) => {
   if (!dateString) return "Just now";
@@ -25,7 +25,7 @@ const formatTimeAgo = (dateString, now = Date.now()) => {
   return `${days} d ago`;
 };
 
-function HeroArticle() {
+function HeroArticle({ searchQuery = "", selectedCategory = "All" }) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [now, setNow] = useState(Date.now());
@@ -37,6 +37,12 @@ function HeroArticle() {
 
     return () => clearInterval(timer);
   }, []);
+
+  const filteredArticles = filterArticles(
+    articles,
+    searchQuery,
+    selectedCategory,
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -109,13 +115,13 @@ function HeroArticle() {
               <div className="px-5 py-10 text-center text-lg text-slate-600">
                 Loading articles...
               </div>
-            ) : articles.length === 0 ? (
+            ) : filteredArticles.length === 0 ? (
               <div className="px-5 py-10 text-center text-lg text-slate-600">
-                No articles available.
+                No articles found.
               </div>
             ) : (
               <div className="flex flex-wrap -m-4">
-                {articles.map((article) => {
+                {filteredArticles.map((article) => {
                   const { fields = {} } = article;
                   const slug =
                     fields.slug ||
