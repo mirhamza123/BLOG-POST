@@ -131,6 +131,10 @@ function CardDtail() {
 
   const { fields = {} } = article;
   const imageUrl = fields.image?.fields?.file?.url;
+  const authorName = fields.authorName || fields["author name"] || "Anonymous";
+  const authorImageUrl = fields.authorimg?.fields?.file?.url;
+  const readTime =
+    fields["Reading Time"] || fields.readingTime || fields.readTime;
   const title = fields.title || "Untitled Article";
   const category = fields.Category || fields.category || "General";
   const body = fields.body;
@@ -153,6 +157,29 @@ function CardDtail() {
             <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">
               {category}
             </span>
+          </div>
+
+          <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-slate-600">
+            <div className="flex items-center gap-2">
+              {authorImageUrl ? (
+                <img
+                  src={
+                    authorImageUrl.startsWith("//")
+                      ? `https:${authorImageUrl}`
+                      : authorImageUrl
+                  }
+                  alt={authorName}
+                  className="h-9 w-9 rounded-full object-cover"
+                />
+              ) : (
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-700 text-sm font-semibold text-white">
+                  {authorName.charAt(0).toUpperCase()}
+                </span>
+              )}
+              <span className="font-semibold text-slate-800">{authorName}</span>
+            </div>
+            <span className="text-slate-400">|</span>
+            <span>Reading time: {readTime || "Not specified"}</span>
           </div>
 
           <h1 className="mb-8 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
