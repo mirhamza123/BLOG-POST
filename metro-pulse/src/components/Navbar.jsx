@@ -14,7 +14,7 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-300 bg-[#ececec] px-2 py-2 shadow-sm sm:px-4 sm:py-3">
-      <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-2 rounded-[20px] border border-slate-500 bg-white/90 px-3 py-2 sm:px-5">
+      <div className="relative mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-2 rounded-[20px] border border-slate-500 bg-white/90 px-3 py-2 sm:px-5">
         <NavLink to="/" className="flex min-w-0 items-center">
           <img
             src={logo}
@@ -23,7 +23,7 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
           />
         </NavLink>
 
-        <nav className="hidden items-center justify-center gap-12 md:flex">
+        <nav className="absolute left-[46%] hidden -translate-x-1/2 items-center justify-center gap-12 md:flex">
           {navLinks.map(({ label, to }) => (
             <NavLink
               key={label}
