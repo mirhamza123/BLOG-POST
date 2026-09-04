@@ -128,6 +128,10 @@ function HeroArticle() {
                   const authorName =
                     fields.authorName || fields["author name"] || "Anonymous";
                   const authorImageUrl = fields.authorimg?.fields?.file?.url;
+                  const readTime =
+                    fields["Reading Time"] ||
+                    fields.readingTime ||
+                    fields.readTime;
                   const category =
                     fields.Category || fields.category || "General";
                   const publishDate =
@@ -174,6 +178,12 @@ function HeroArticle() {
                           <div className="mt-1 text-[10px] text-gray-500">
                             {formatTimeAgo(publishDate, now)} | {category}
                           </div>
+
+                          {readTime && (
+                            <div className="mt-1 text-[10px] text-gray-500">
+                              Reading time: {readTime}
+                            </div>
+                          )}
 
                           <div className="mt-2 mb-3 flex items-center justify-between gap-3">
                             <div className="flex min-w-0 items-center gap-2">
