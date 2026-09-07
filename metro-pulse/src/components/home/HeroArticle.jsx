@@ -75,7 +75,7 @@ function HeroArticle({ searchQuery = "", selectedCategory = "All" }) {
   return (
     <div>
       <main className="mx-auto max-w-[88%] px-4 py-14">
-        <section className="text-gray-600 body-font">
+        <section className="body-font text-gray-600 dark:text-gray-300">
           <div className="container mx-auto flex md:flex-row flex-col items-center">
             <div className="mb-10 w-full md:mb-0 md:w-[55%] lg:w-[95%] lg:max-w-[700px]">
               <img
@@ -85,19 +85,19 @@ function HeroArticle({ searchQuery = "", selectedCategory = "All" }) {
               />
             </div>
             <div className="lg:flex-grow md:w-[50%] lg:pl-15 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-              <h1 className=" title-font sm:text-4xl text-3xl mb-4 font-semibold text-gray-900">
+              <h1 className="title-font mb-4 text-3xl font-semibold text-gray-900 dark:text-white sm:text-4xl">
                 <span className="block text-blue-600">
                   Pulse of the World: Breaking News, Live Sports &
                 </span>
                 <span className="block">Unforgettable Journeys</span>
               </h1>
-              <p className="mb-8 ">
+              <p className="mb-8 text-gray-600 dark:text-gray-300">
                 Stay informed with real-time news, feel the energy of live
                 sports, and discover world-class travel escapes tailored for
                 your daily pulse.
               </p>
               <div className="flex flex-col gap-2 sm:flex-row sm:justify-center md:justify-start ">
-                <button className="inline-flex text-white bg-blue-700 border-0 py-2 px-6 hover:bg-indigo-600 rounded-2xl text-lg">
+                <button className="inline-flex rounded-2xl border-0 bg-blue-700 px-6 py-2 text-lg text-white hover:bg-indigo-600 dark:bg-blue-600 dark:hover:bg-indigo-500">
                   Read more
                 </button>
               </div>
@@ -105,18 +105,20 @@ function HeroArticle({ searchQuery = "", selectedCategory = "All" }) {
           </div>
         </section>
 
-        <section className="text-gray-400 body-font">
+        <section className="body-font text-gray-400 dark:text-gray-500">
           <div className="container py-24 mx-auto">
             <div className="container px-5 py-10 mx-auto">
-              <h2 className="text-2xl font-bold text-black">Latest Stores</h2>
+              <h2 className="text-2xl font-bold text-black dark:text-white">
+                Latest Stores
+              </h2>
             </div>
 
             {loading ? (
-              <div className="px-5 py-10 text-center text-lg text-slate-600">
+              <div className="px-5 py-10 text-center text-lg text-slate-600 dark:text-gray-400">
                 Loading articles...
               </div>
             ) : filteredArticles.length === 0 ? (
-              <div className="px-5 py-10 text-center text-lg text-slate-600">
+              <div className="px-5 py-10 text-center text-lg text-slate-600 dark:text-gray-400">
                 No articles found.
               </div>
             ) : (
@@ -154,7 +156,7 @@ function HeroArticle({ searchQuery = "", selectedCategory = "All" }) {
                     <div key={slug || title} className="p-2 md:w-1/3">
                       <Link
                         to={slug ? `/article/${slug}` : "/"}
-                        className="group block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+                        className="group block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
                       >
                         {imageUrl ? (
                           <img
@@ -167,26 +169,26 @@ function HeroArticle({ searchQuery = "", selectedCategory = "All" }) {
                             alt={title}
                           />
                         ) : (
-                          <div className="h-40 w-full bg-slate-200 md:h-44" />
+                          <div className="h-40 w-full bg-slate-200 dark:bg-gray-800 md:h-44" />
                         )}
 
                         <div className="p-4">
-                          <span className="mb-2 inline-flex rounded-full bg-indigo-100 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-700">
+                          <span className="mb-2 inline-flex rounded-full bg-indigo-100 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
                             {category}
                           </span>
-                          <h3 className="mb-2 text-base font-semibold leading-tight text-slate-900 group-hover:underline">
+                          <h3 className="mb-2 text-base font-semibold leading-tight text-slate-900 dark:text-white group-hover:underline">
                             {title}
                           </h3>
-                          <p className="mb-2 text-xs leading-relaxed text-slate-600">
+                          <p className="mb-2 text-xs leading-relaxed text-slate-600 dark:text-gray-400">
                             {shortDescription}
                           </p>
 
-                          <div className="mt-1 text-[10px] text-gray-500">
+                          <div className="mt-1 text-[10px] text-gray-500 dark:text-gray-500">
                             {formatTimeAgo(publishDate, now)} | {category}
                           </div>
 
                           {readTime && (
-                            <div className="mt-1 text-[10px] text-gray-500">
+                            <div className="mt-1 text-[10px] text-gray-500 dark:text-gray-500">
                               Reading time: {readTime}
                             </div>
                           )}
@@ -208,13 +210,13 @@ function HeroArticle({ searchQuery = "", selectedCategory = "All" }) {
                                   {authorName.charAt(0).toUpperCase()}
                                 </span>
                               )}
-                              <span className="truncate text-xs font-medium text-slate-700">
+                              <span className="truncate text-xs font-medium text-slate-700 dark:text-gray-300">
                                 {authorName}
                               </span>
                             </div>
                           </div>
 
-                          <span className="inline-flex items-center text-xs font-medium text-indigo-600 transition hover:text-indigo-800">
+                          <span className="inline-flex items-center text-xs font-medium text-indigo-600 transition hover:text-indigo-800 dark:text-indigo-300 dark:hover:text-indigo-200">
                             Learn More
                             <svg
                               className="ml-1.5 h-3.5 w-3.5"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
@@ -11,10 +11,20 @@ const navLinks = [
 
 function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window === "undefined") return false;
+
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode);
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-300 bg-[#ececec] px-2 py-2 shadow-sm sm:px-4 sm:py-3">
-      <div className="relative mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-2 rounded-[20px] border border-slate-500 bg-white/90 px-3 py-2 sm:px-5">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-300 bg-[#ececec] px-2 py-2 shadow-sm transition-colors duration-300 dark:border-gray-800 dark:bg-gray-900 sm:px-4 sm:py-3">
+      <div className="relative mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-2 rounded-[20px] border border-slate-500 bg-white/90 px-3 py-2 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-950/90 sm:px-5">
         <NavLink to="/" className="flex min-w-0 items-center">
           <img
             src={logo}
@@ -33,7 +43,7 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
                 `text-base font-medium  text-[23px] transition ${
                   isActive
                     ? "text-blue-600 "
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-600 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white"
                 }`
               }
             >
@@ -43,7 +53,7 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
         </nav>
 
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <div className="flex min-w-0 items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-500 sm:px-5">
+          <div className="flex min-w-0 items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-500 transition-colors dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 sm:px-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -64,14 +74,15 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search articles..."
               aria-label="Search articles"
-              className="w-32 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-500 sm:w-44"
+              className="w-32 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-500 dark:text-gray-200 dark:placeholder:text-gray-500 sm:w-44"
             />
           </div>
 
           <button
             type="button"
             aria-label="Toggle theme"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 sm:h-10 sm:w-10"
+            onClick={() => setIsDarkMode((isDark) => !isDark)}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:h-10 sm:w-10"
           >
             <svg
               className="h-5 w-5"
@@ -93,7 +104,7 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((isOpen) => !isOpen)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 md:hidden"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-slate-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 md:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +124,7 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
         </div>
 
         {menuOpen && (
-          <nav className="flex basis-full flex-col gap-2 border-t border-slate-200 pt-3 md:hidden">
+          <nav className="flex basis-full flex-col gap-2 border-t border-slate-200 pt-3 dark:border-gray-700 md:hidden">
             {navLinks.map(({ label, to }) => (
               <NavLink
                 key={label}
@@ -125,8 +136,8 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
                 className={({ isActive }) =>
                   `rounded-lg px-3 py-2 text-base font-medium transition ${
                     isActive
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      ? "bg-blue-50 text-blue-600 dark:bg-blue-950/50 dark:text-blue-300"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
                   }`
                 }
               >

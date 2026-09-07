@@ -25,6 +25,10 @@ body {
   background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
 }
 
+html.dark body {
+  background: #030712;
+}
+
 img {
   display: block;
   max-width: 100%;

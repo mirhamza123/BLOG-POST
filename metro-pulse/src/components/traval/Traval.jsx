@@ -40,20 +40,20 @@ function Traval({ searchQuery = "" }) {
 
   return (
     <main className="mx-auto max-w-[88%] px-4 py-10">
-      <section className="body-font text-gray-400">
+      <section className="body-font text-gray-400 dark:text-gray-500">
         <div className="container mx-auto py-6">
           <div className="container mx-auto px-5 py-10">
-            <h2 className="text-2xl font-bold text-black">
+            <h2 className="text-2xl font-bold text-black dark:text-white">
               Travel & Exploration
             </h2>
           </div>
 
           {loading ? (
-            <div className="px-5 py-10 text-center text-lg text-slate-600">
+            <div className="px-5 py-10 text-center text-lg text-slate-600 dark:text-gray-400">
               Loading Travel articles...
             </div>
           ) : filteredArticles.length === 0 ? (
-            <div className="px-5 py-10 text-center text-lg text-slate-600">
+            <div className="px-5 py-10 text-center text-lg text-slate-600 dark:text-gray-400">
               No articles found.
             </div>
           ) : (
@@ -87,7 +87,7 @@ function Traval({ searchQuery = "" }) {
                   <div key={slug || title} className="p-2 md:w-1/3">
                     <Link
                       to={slug ? `/article/${slug}` : "/"}
-                      className="group block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+                      className="group block h-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
                     >
                       {imageUrl ? (
                         <img
@@ -100,22 +100,22 @@ function Traval({ searchQuery = "" }) {
                           alt={title}
                         />
                       ) : (
-                        <div className="h-40 w-full bg-slate-200 md:h-44" />
+                        <div className="h-40 w-full bg-slate-200 dark:bg-gray-800 md:h-44" />
                       )}
 
                       <div className="p-4">
-                        <span className="mb-2 inline-flex rounded-full bg-indigo-100 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-700">
+                        <span className="mb-2 inline-flex rounded-full bg-indigo-100 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
                           {category}
                         </span>
-                        <h3 className="mb-2 text-base font-semibold leading-tight text-slate-900 group-hover:underline">
+                        <h3 className="mb-2 text-base font-semibold leading-tight text-slate-900 dark:text-white group-hover:underline">
                           {title}
                         </h3>
-                        <p className="mb-2 text-xs leading-relaxed text-slate-600">
+                        <p className="mb-2 text-xs leading-relaxed text-slate-600 dark:text-gray-400">
                           {shortDescription}
                         </p>
 
                         {readTime && (
-                          <div className="mb-3 text-[10px] text-gray-500">
+                          <div className="mb-3 text-[10px] text-gray-500 dark:text-gray-500">
                             Reading time: {readTime}
                           </div>
                         )}
@@ -137,13 +137,13 @@ function Traval({ searchQuery = "" }) {
                                 {authorName.charAt(0).toUpperCase()}
                               </span>
                             )}
-                            <span className="truncate text-xs font-medium text-slate-700">
+                            <span className="truncate text-xs font-medium text-slate-700 dark:text-gray-300">
                               {authorName}
                             </span>
                           </div>
                         </div>
 
-                        <span className="inline-flex items-center text-xs font-medium text-indigo-600 transition hover:text-indigo-800">
+                        <span className="inline-flex items-center text-xs font-medium text-indigo-600 transition hover:text-indigo-800 dark:text-indigo-300 dark:hover:text-indigo-200">
                           Learn More
                           <svg
                             className="ml-1.5 h-3.5 w-3.5"

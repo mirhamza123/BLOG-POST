@@ -56,7 +56,7 @@ const socialLinks = [
 
 function Footer() {
   return (
-    <footer className="border-t border-slate-300 bg-[#f3f3f1]">
+    <footer className="border-t border-slate-300 bg-[#f3f3f1] transition-colors duration-300 dark:border-gray-800 dark:bg-gray-900">
       <div className="mx-auto flex max-w-[1600px] flex-col gap-8 px-4 py-10 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 xl:px-10">
         <div className="flex min-w-0 flex-col gap-5">
           <div className="flex min-w-0 items-center gap-3 sm:gap-4">
@@ -69,18 +69,18 @@ function Footer() {
             </h3>
           </div>
 
-          <p className="max-w-[720px] text-base leading-relaxed text-slate-600 sm:text-[1.1rem] lg:text-[1.25rem]">
+          <p className="max-w-[720px] text-base leading-relaxed text-slate-600 dark:text-gray-400 sm:text-[1.1rem] lg:text-[1.25rem]">
             Delivering insightful analysis and compelling stories from the heart
             of the modern metropolis.
           </p>
 
-          <div className="flex items-center gap-3 text-slate-700 sm:gap-4">
+          <div className="flex items-center gap-3 text-slate-700 dark:text-gray-300 sm:gap-4">
             {socialLinks.map(({ label, href, icon }) => (
               <a
                 key={label}
                 href={href}
                 aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white/80 transition hover:border-slate-500 hover:text-slate-900 sm:h-12 sm:w-12"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white/80 transition hover:border-slate-500 hover:text-slate-900 dark:border-gray-700 dark:bg-gray-950/80 dark:hover:border-gray-500 dark:hover:text-white sm:h-12 sm:w-12"
               >
                 {icon}
               </a>
@@ -97,14 +97,14 @@ function Footer() {
               <a
                 key={label}
                 href="#"
-                className="text-base text-slate-700 transition hover:text-slate-900 sm:text-xl"
+                className="text-base text-slate-700 transition hover:text-slate-900 dark:text-gray-300 dark:hover:text-white sm:text-xl"
               >
                 {label}
               </a>
             ))}
           </nav>
 
-          <p className="max-w-full text-left text-sm text-slate-600 sm:text-lg lg:text-right lg:text-xl">
+          <p className="max-w-full text-left text-sm text-slate-600 dark:text-gray-400 sm:text-lg lg:text-right lg:text-xl">
             ©2024 MetroPulse Editorial Group. All rights .
           </p>
         </div>

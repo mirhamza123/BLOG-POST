@@ -75,14 +75,18 @@ function CardDtail() {
   const renderDescription = (description) => {
     if (!description) {
       return (
-        <p className="text-lg leading-8 text-slate-600">
+        <p className="text-lg leading-8 text-slate-600 dark:text-gray-400">
           No description available.
         </p>
       );
     }
 
     if (typeof description === "string") {
-      return <p className="text-lg leading-8 text-slate-700">{description}</p>;
+      return (
+        <p className="text-lg leading-8 text-slate-700 dark:text-gray-300">
+          {description}
+        </p>
+      );
     }
 
     if (description.content) {
@@ -92,7 +96,7 @@ function CardDtail() {
         return (
           <p
             key={`${block.nodeType}-${index}`}
-            className="mb-4 text-lg leading-8 text-slate-700"
+            className="mb-4 text-lg leading-8 text-slate-700 dark:text-gray-300"
           >
             {getRichTextText(block.content)}
           </p>
@@ -101,13 +105,15 @@ function CardDtail() {
     }
 
     return (
-      <p className="text-lg leading-8 text-slate-700">{String(description)}</p>
+      <p className="text-lg leading-8 text-slate-700 dark:text-gray-300">
+        {String(description)}
+      </p>
     );
   };
 
   if (loading) {
     return (
-      <main className="mx-auto max-w-4xl px-4 py-20 text-center text-lg text-slate-600">
+      <main className="mx-auto max-w-4xl px-4 py-20 text-center text-lg text-slate-600 dark:text-gray-400">
         Loading article...
       </main>
     );
@@ -116,12 +122,12 @@ function CardDtail() {
   if (!article) {
     return (
       <main className="mx-auto max-w-4xl px-4 py-20 text-center">
-        <p className="mb-6 text-xl font-semibold text-slate-700">
+        <p className="mb-6 text-xl font-semibold text-slate-700 dark:text-gray-300">
           Article not found.
         </p>
         <Link
           to="/"
-          className="inline-flex items-center text-indigo-600 hover:text-indigo-800"
+          className="inline-flex items-center text-indigo-600 hover:text-indigo-800 dark:text-indigo-300 dark:hover:text-indigo-200"
         >
           ← Back to Home
         </Link>
@@ -145,21 +151,21 @@ function CardDtail() {
       <div className="mb-8">
         <Link
           to="/"
-          className="inline-flex items-center text-base font-medium text-indigo-600 transition hover:text-indigo-800"
+          className="inline-flex items-center text-base font-medium text-indigo-600 transition hover:text-indigo-800 dark:text-indigo-300 dark:hover:text-indigo-200"
         >
           ← Back to Home
         </Link>
       </div>
 
-      <article className="overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-slate-200">
+      <article className="overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-slate-200 dark:bg-gray-900 dark:ring-gray-800">
         <div className="p-6 md:p-10">
           <div className="mb-6 flex flex-wrap items-center gap-3">
-            <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">
+            <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
               {category}
             </span>
           </div>
 
-          <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-slate-600">
+          <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-slate-600 dark:text-gray-400">
             <div className="flex items-center gap-2">
               {authorImageUrl ? (
                 <img
@@ -176,13 +182,15 @@ function CardDtail() {
                   {authorName.charAt(0).toUpperCase()}
                 </span>
               )}
-              <span className="font-semibold text-slate-800">{authorName}</span>
+              <span className="font-semibold text-slate-800 dark:text-gray-200">
+                {authorName}
+              </span>
             </div>
             <span className="text-slate-400">|</span>
             <span>Reading time: {readTime || "Not specified"}</span>
           </div>
 
-          <h1 className="mb-8 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+          <h1 className="mb-8 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
             {title}
           </h1>
 
@@ -200,11 +208,11 @@ function CardDtail() {
             {body ? (
               documentToReactComponents(body, renderOptions)
             ) : shortDescription ? (
-              <p className="text-lg leading-8 text-slate-700">
+              <p className="text-lg leading-8 text-slate-700 dark:text-gray-300">
                 {shortDescription}
               </p>
             ) : (
-              <p className="text-lg leading-8 text-slate-600">
+              <p className="text-lg leading-8 text-slate-600 dark:text-gray-400">
                 No description available.
               </p>
             )}
