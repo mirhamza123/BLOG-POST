@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logoLight from "../assets/logo1.png";
+import logoDark from "../assets/logo2.png";
 
 const navLinks = [
   { label: "All", to: "/" },
@@ -27,9 +28,14 @@ function Navbar({ searchQuery, setSearchQuery, setSelectedCategory }) {
       <div className="relative mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-2 rounded-[20px] border border-slate-500 bg-white/90 px-3 py-2 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-950/90 sm:px-5">
         <NavLink to="/" className="flex min-w-0 items-center">
           <img
-            src={logo}
+            src={logoDark}
             alt="MetroPulse logo"
-            className="h-10 w-auto rounded sm:h-[60px]"
+            className="h-10 w-auto rounded sm:h-[60px] dark:hidden"
+          />
+          <img
+            src={logoLight}
+            alt="MetroPulse logo"
+            className="hidden h-10 w-auto rounded sm:h-[60px] dark:block"
           />
         </NavLink>
 
